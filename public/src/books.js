@@ -1,22 +1,20 @@
+// finds author by "id" number
 function findAuthorById(authors, id) {
   return authors.find(author=> author.id === id)
 }
-
+// finds book by "id number"
 function findBookById(books, id) {
   return found = books.find(book=> book.id ===id)
 }
 
-function partitionBooksByBorrowedStatus(books) {
-  let result =[]
-  let returned = []
-  let checkedOut = []
-
-  books.forEach(book => (!book.borrows[0].returned) ? checkedOut.push(book) : returned.push(book))
-
-  result.push(checkedOut)
-  result.push(returned)
+// seperates books by borrowed status
+//added filter function 
+const partitionBooksByBorrowedStatus=(books=> { 
+  let checkedOut = books.filter(book => !book.borrows[0].returned).map(book=> book)
+  let returned = books.filter(book => book.borrows[0].returned == true).map(book => book)
+  let result =[checkedOut,returned]
   return result
-   }
+   })
 
 function getBorrowersForBook(book, accounts) {
   let result = []

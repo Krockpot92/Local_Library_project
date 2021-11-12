@@ -1,16 +1,22 @@
+
+// Helper function to sort top 5 entries
 function sortnSplice(arr){
   arr.sort((entryA,entryB) => entryB.count - entryA.count)
   return arr.splice(0,5)
 }
 
+// Total number of books
 function getTotalBooksCount(books) {
   return books.length
 }
 
+// retrieves total number of accounts
 function getTotalAccountsCount(accounts) {
   return accounts.length
 }
 
+
+// retrieves total number of books borrowed
 function getBooksBorrowedCount(books) {
   let result = 0
   books.forEach((index)=> {
@@ -25,6 +31,7 @@ function getBooksBorrowedCount(books) {
     return result
   }
 
+  // Sorts books by genre
 function getMostCommonGenres(books) {
   let result = []
   let genres = {};
@@ -41,18 +48,20 @@ function getMostCommonGenres(books) {
   return result.slice(0,5)
 }
 
+// Sorts books by popularity
 let getMostPopularBooks=(books) =>
   books
     .map(({borrows,title}) => ({ name: title, count: borrows.length}))
     .sort((borrowsA,borrowsB)=> borrowsB.count - borrowsA.count)
     .slice(0, 5);
     
-    let getMostPopularAuthors =(books, authors) =>{
-      let result = [];
-      authors.forEach((author) =>{
-        let authorName = {
-            name: `${author.name.first} ${author.name.last}`,
-            count: 0        
+// Sorts authors by popularity
+let getMostPopularAuthors =(books, authors) =>{
+    let result = [];
+    authors.forEach((author) =>{
+      let authorName = {
+          name: `${author.name.first} ${author.name.last}`,
+          count: 0        
         }
         books.forEach((book) =>{
           if( book.authorId === author.id){
@@ -61,8 +70,8 @@ let getMostPopularBooks=(books) =>
         })
         result.push(authorName)
       })
-      return sortnSplice(result);
-  }
+  return sortnSplice(result);
+}
 
 module.exports = {
   getTotalBooksCount,
